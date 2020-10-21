@@ -25,6 +25,7 @@ const drawMap = (map) => {
       return false;
     }
   });
+  console.clear();
   console.log(text);
 };
 
