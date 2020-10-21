@@ -21,7 +21,7 @@ const drawMap = (map) => {
     border: getBorderCharacters('void'),
     columnDefault: {
       paddingLeft: 0,
-      paddingRight: 1
+      paddingRight: 0
     },
     drawHorizontalLine: () => {
       return false;
