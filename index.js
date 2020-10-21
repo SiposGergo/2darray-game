@@ -16,7 +16,13 @@ do {
   drawMap(map);
 
   key = keyIn();
-  if (key === 's') {
+  if (key === 's' && player.pos.y < height - 2) {
     player.pos.y++;
+  } else if (key === 'w' && player.pos.y > 1) {
+    player.pos.y--;
+  } else if (key === 'a' && player.pos.x > 1) {
+    player.pos.x--;
+  } else if (key === 'd' && player.pos.x < width - 2) {
+    player.pos.x++;
   }
 } while (key !== 'q');

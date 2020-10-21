@@ -6,7 +6,9 @@ const fillMap = (width, height, apples, player) => {
   for (let i = 0; i < height; i++) {
     array[i] = new Array(width);
     for (let j = 0; j < width; j++) {
-      if (player.pos.x === j && player.pos.y === i) {
+      if (i === 0 || j === 0 || i === height - 1 || j === width - 1) {
+        array[i][j] = '██';
+      } else if (player.pos.x === j && player.pos.y === i) {
         array[i][j] = '🙂';
       }
     }
