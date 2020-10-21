@@ -5,6 +5,11 @@ const fillMap = (width, height, apples, player) => {
   const array = new Array(height);
   for (let i = 0; i < height; i++) {
     array[i] = new Array(width);
+    for (let j = 0; j < width; j++) {
+      if (player.pos.x === j && player.pos.y === i) {
+        array[i][j] = '🙂';
+      }
+    }
   }
   return array;
 };
@@ -20,7 +25,6 @@ const drawMap = (map) => {
       return false;
     }
   });
-
   console.log(text);
 };
 
