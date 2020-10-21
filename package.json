@@ -1,0 +1,23 @@
+{
+  "name": "2darray-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SiposGergo/2darray-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SiposGergo/2darray-game/issues"
+  },
+  "homepage": "https://github.com/SiposGergo/2darray-game#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.10",
+    "table": "^6.0.3"
+  }
+}
