@@ -19,12 +19,14 @@ for (let i = 0; i < numberOfAppels; i++) {
   });
 }
 
-let key;
-do {
-  map = fillMap(width, height, apples, player);
-  drawMap(map, player.score);
+map = fillMap(width, height, apples, player);
+drawMap(map, player.score);
 
-  key = keyIn();
+const stdin = process.stdin;
+stdin.setRawMode(true); // Ne várjon enterre
+stdin.resume(); // Csak process.exit-el lehet kilépni
+stdin.setEncoding('utf8'); // Karaktereket kapjunk vissza
+stdin.on('data', (key) => {
   if (key === 's' && player.pos.y < height - 2) {
     player.pos.y++;
   } else if (key === 'w' && player.pos.y > 1) {
@@ -34,4 +36,9 @@ do {
   } else if (key === 'd' && player.pos.x < width - 2) {
     player.pos.x++;
   }
-} while (key !== 'q');
+  if (key === 'q') {
+    process.exit();
+  }
+  map = fillMap(width, height, apples, player);
+  drawMap(map, player.score);
+});
