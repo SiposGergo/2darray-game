@@ -1,7 +1,6 @@
 // const fillMap = require('./map').fillMap;
 // const valamimás = require('./map').valamimás;
 const { fillMap, drawMap } = require('./map');
-const { keyIn } = require('readline-sync');
 const { random } = require('./random');
 
 const width = 20;
@@ -11,6 +10,7 @@ const numberOfAppels = 5;
 let map = [];
 const apples = [];
 const player = { pos: { x: 1, y: 1 }, score: 0 };
+const enemy = { pos: { x: 5, y: 1 }, movesDown: true };
 
 for (let i = 0; i < numberOfAppels; i++) {
   apples.push({
@@ -19,8 +19,31 @@ for (let i = 0; i < numberOfAppels; i++) {
   });
 }
 
-map = fillMap(width, height, apples, player);
-drawMap(map, player.score);
+const interval = setInterval(() => {
+  if (enemy.movesDown) {
+    if (enemy.pos.y < height - 2) {
+      enemy.pos.y++;
+    } else {
+      enemy.movesDown = false;
+    }
+  } else {
+    if (enemy.pos.y > 1) {
+      enemy.pos.y--;
+    } else {
+      enemy.movesDown = true;
+    }
+  }
+  refreshMap();
+}, 200);
+
+const refreshMap = () => {
+  map = fillMap(width, height, apples, player, enemy);
+  drawMap(map, player.score);
+  if (player.pos.x === enemy.pos.x && player.pos.y === enemy.pos.y) {
+    console.log('Vesztettél!');
+    process.exit();
+  }
+};
 
 const stdin = process.stdin;
 stdin.setRawMode(true); // Ne várjon enterre
@@ -37,8 +60,8 @@ stdin.on('data', (key) => {
     player.pos.x++;
   }
   if (key === 'q') {
+    clearInterval(interval);
     process.exit();
   }
-  map = fillMap(width, height, apples, player);
-  drawMap(map, player.score);
+  refreshMap();
 });

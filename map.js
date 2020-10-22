@@ -9,7 +9,7 @@ const findIndexOfApple = (apples, i, j) => {
   }
 };
 
-const fillMap = (width, height, apples, player) => {
+const fillMap = (width, height, apples, player, enemy) => {
   const array = new Array(height);
   for (let i = 0; i < height; i++) {
     array[i] = new Array(width);
@@ -27,6 +27,8 @@ const fillMap = (width, height, apples, player) => {
       }
       if (indexOfApple !== undefined) {
         array[i][j] = '🍎';
+      } if (enemy.pos.x === j && enemy.pos.y === i) {
+        array[i][j] = '👽';
       }
     }
   }
