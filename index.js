@@ -2,18 +2,27 @@
 // const valamimás = require('./map').valamimás;
 const { fillMap, drawMap } = require('./map');
 const { keyIn } = require('readline-sync');
+const { random } = require('./random');
 
 const width = 20;
 const height = 10;
+const numberOfAppels = 5;
 
 let map = [];
 const apples = [];
 const player = { pos: { x: 1, y: 1 }, score: 0 };
 
+for (let i = 0; i < numberOfAppels; i++) {
+  apples.push({
+    x: random(1, width - 2),
+    y: random(1, height - 2)
+  });
+}
+
 let key;
 do {
   map = fillMap(width, height, apples, player);
-  drawMap(map);
+  drawMap(map, player.score);
 
   key = keyIn();
   if (key === 's' && player.pos.y < height - 2) {
